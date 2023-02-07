@@ -1,3 +1,5 @@
+import '../styles/output.css';
+
 import type {ReactElement} from 'react';
 
 export default function RootLayout({
@@ -8,7 +10,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head />
-      <body>{children}</body>
+      <body>
+        <div className="bg-basic">{children}</div>
+      </body>
     </html>
   );
 }
