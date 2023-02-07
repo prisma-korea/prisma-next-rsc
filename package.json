@@ -6,16 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "dotenv -e .env.local -- prisma db seed",
+    "migrate:dev": "dotenv -e .env.local -- prisma migrate dev --schema=./server/prisma/schema.prisma",
+    "migrate:deploy": "dotenv -e .env.local -- prisma migrate deploy --schema=./server/prisma/schema.prisma"
   },
   "dependencies": {
     "@next/font": "13.1.6",
+    "@prisma/client": "4.9.0",
     "@types/node": "18.11.19",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
-    "eslint": "8.33.0",
-    "eslint-config-next": "13.1.6",
     "next": "13.1.6",
+    "prisma": "^4.9.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.5"
@@ -23,10 +26,15 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
+    "dotenv-cli": "^7.0.0",
     "eslint": "^8.33.0",
     "eslint-config-next": "13.1.6",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.8.3"
+    "prettier": "^2.8.3",
+    "ts-node": "^10.9.1"
+  },
+  "prisma": {
+    "seed": "ts-node --transpile-only ./server/prisma/seed.ts"
   }
 }
