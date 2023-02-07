@@ -1,0 +1,15 @@
+overwrite: true
+schema:
+  - './server/generated/schema.graphql'
+generates:
+  lib/types/graphql.tsx:
+    # documents: 'src/__generated__/**/*.graphql'
+    config:
+      skipDocumentsValidation: true
+      flattenGeneratedTypes: true
+      gqlImport: graphql-tag
+      enumsAsTypes: true
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
