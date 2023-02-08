@@ -1,3 +1,7 @@
 export default function Loading(): React.ReactElement {
-  return <div>Loading on serverside...</div>;
+  return (
+    <div className="h-full flex justify-center items-center">
+      Loading on server side...
+    </div>
+  );
 }

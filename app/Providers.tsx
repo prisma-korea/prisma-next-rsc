@@ -1,16 +1,14 @@
 'use client';
 
-import type {ReactElement, ReactNode} from 'react';
-
 import {RelayEnvironmentProvider} from 'react-relay';
-import {useRelayEnvironment} from '~/lib/relay';
+import {getCurrentEnvironment} from '~/lib/relay';
 
 export default function Providers({
   children,
 }: {
-  children: ReactNode;
-}): ReactElement {
-  const environment = useRelayEnvironment();
+  children: React.ReactNode;
+}): React.ReactElement {
+  const environment = getCurrentEnvironment();
 
   return (
     <RelayEnvironmentProvider environment={environment}>

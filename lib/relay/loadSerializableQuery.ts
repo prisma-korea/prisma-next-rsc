@@ -6,7 +6,7 @@ import type {
 } from 'relay-runtime';
 
 import type {ConcreteRequest} from 'relay-runtime/lib/util/RelayConcreteNode';
-import {fetchGraphQL} from './fetch';
+import {networkFetch} from './fetch';
 
 export interface SerializablePreloadedQuery<
   TRequest extends ConcreteRequest,
@@ -27,7 +27,7 @@ export default async function loadSerializableQuery<
   params: RequestParameters,
   variables: VariablesOf<TQuery>,
 ): Promise<SerializablePreloadedQuery<TRequest, TQuery>> {
-  const response = await fetchGraphQL(params, variables);
+  const response = await networkFetch(params, variables);
 
   return {
     params,

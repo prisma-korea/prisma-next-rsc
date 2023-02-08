@@ -14,11 +14,11 @@ type RequestProps = {
   body: string | FormData | null;
 };
 
-const GRAPHQL_URL = '/api/graphql';
+const GRAPHQL_URL = 'http://localhost:3000/api/graphql';
 const IS_SERVER = typeof window === typeof undefined;
 const CACHE_TTL = 5 * 1000; // 5 seconds, to resolve preloaded results
 
-export const fetchGraphQL = async (
+export const networkFetch = async (
   operation: RequestParameters,
   variables: Variables,
   cacheConfig?: CacheConfig,
@@ -87,10 +87,22 @@ export const fetchGraphQL = async (
 
   const resp = await fetch(GRAPHQL_URL, config);
 
-  return await resp.json();
+  const json = await resp.json();
+
+  if (Array.isArray(json.errors)) {
+    throw new Error(
+      `Error fetching GraphQL query '${
+        operation.name
+      }' with variables '${JSON.stringify(variables)}': ${JSON.stringify(
+        json.errors,
+      )}`,
+    );
+  }
+
+  return json;
 };
 
-export const responseCache: QueryResponseCache | null = IS_SERVER
+export const responseCache = IS_SERVER
   ? null
   : new QueryResponseCache({
       size: 100,
@@ -116,7 +128,7 @@ export function createNetwork(): ReturnType<(typeof Network)['create']> {
       }
     }
 
-    return fetchGraphQL(params, variables, cacheConfig, uploadables);
+    return networkFetch(params, variables, cacheConfig, uploadables);
   };
 
   const network = Network.create(fetchResponse);

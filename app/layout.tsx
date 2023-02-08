@@ -1,5 +1,3 @@
-'use client';
-
 import '../styles/output.css';
 
 import Providers from './providers';
@@ -13,11 +11,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head />
-      <Providers>
-        <body>
-          <div className="bg-basic">{children}</div>
-        </body>
-      </Providers>
+      <body>
+        <Providers>
+          <div className="w-screen h-screen bg-paper">{children}</div>
+        </Providers>
+      </body>
     </html>
   );
 }
