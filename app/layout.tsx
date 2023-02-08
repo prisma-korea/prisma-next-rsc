@@ -1,5 +1,6 @@
 import '../styles/output.css';
 
+import Providers from './providers';
 import type {ReactElement} from 'react';
 
 export default function RootLayout({
@@ -11,7 +12,9 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body>
-        <div className="bg-basic">{children}</div>
+        <Providers>
+          <div className="w-screen h-screen bg-paper">{children}</div>
+        </Providers>
       </body>
     </html>
   );
