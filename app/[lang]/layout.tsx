@@ -2,12 +2,12 @@ import '../../styles/output.css';
 
 import type {ReactElement, ReactNode} from 'react';
 
+import type {Locale} from '~/lib/i18n';
 import Providers from './Providers';
-import {i18n} from '~/lib/i18n';
 
 type Props = {
   children: ReactNode;
-  params: {lang: string};
+  params: {lang: Locale};
 };
 
 /* this is for static generation */
@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang={lang}>
       <head />
       <body>
-        <Providers>
+        <Providers initialLocale={lang}>
           <div className="w-screen h-screen bg-paper">{children}</div>
         </Providers>
       </body>

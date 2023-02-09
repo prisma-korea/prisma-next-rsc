@@ -2,35 +2,45 @@
 
 import 'client-only';
 
-import Link from 'next/link';
-import type {ReactElement} from 'react';
+import type {ChangeEventHandler, ReactElement} from 'react';
+import {usePathname, useRouter} from 'next/navigation';
+
+import type {TupleToUnion} from '~/lib/types/utils';
 import {i18n} from '~/lib/i18n';
-import {usePathname} from 'next/navigation';
+import {useLocaleContext} from './LocaleProvider';
 
 export default function LocaleSwitcher(): ReactElement {
+  const {locale: curLocale, changeLocale} = useLocaleContext();
   const pathName = usePathname();
-  const redirectedPathName = (locale: string): string => {
-    if (!pathName) {
-      return '/';
-    }
+  const router = useRouter();
 
-    const segments = pathName.split('/');
-    segments[1] = locale;
+  const handleChange: ChangeEventHandler<HTMLSelectElement> = (e): void => {
+    const path = pathName || '/';
 
-    return segments.join('/');
+    const newLocale = e.target.value as TupleToUnion<(typeof i18n)['locales']>;
+
+    const segments = path.split('/');
+    segments[1] = newLocale;
+
+    changeLocale(newLocale);
+    router.push(segments.join('/'));
   };
 
   return (
     <div>
-      <ul>
+      <select
+        name="lang-switcher"
+        onChange={handleChange}
+        defaultValue={curLocale}
+      >
         {i18n.locales.map((locale) => {
           return (
-            <li key={locale}>
-              <Link href={redirectedPathName(locale)}>{locale}</Link>
-            </li>
+            <option key={locale} value={locale}>
+              {locale}
+            </option>
           );
         })}
-      </ul>
+      </select>
     </div>
   );
 }

@@ -9,6 +9,11 @@ const translates = {
   ko: () => import('./translates/ko.json').then((module) => module.default),
 };
 
-export const getTranslates = async (
-  locale: Locale,
-): Promise<ReturnType<(typeof translates)['en']>> => translates[locale]();
+type Translates = Awaited<ReturnType<(typeof translates)['en']>>;
+
+export type Translation = {
+  [K in keyof Translates]: Translates[K];
+};
+
+export const getTranslates = async (locale: Locale): Promise<Translates> =>
+  translates[locale]();

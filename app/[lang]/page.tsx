@@ -29,14 +29,16 @@ export default async function Page({
   return (
     <div className="h-full flex flex-col justify-center items-center">
       <H1 className={clsx('text-h1', 'mb-8', inter.className)}>
-        Prisma nextjs graphql
+        {index.title}
       </H1>
-      <H1>{index.title}</H1>
+
       <div>
         <LocaleSwitcher />
       </div>
       <div>
-        <H4 className={clsx('text-h2', 'mb-4', inter.className)}>Post list</H4>
+        <H4 className={clsx('text-h2', 'mb-4', inter.className)}>
+          {index.post_list}
+        </H4>
         <TempClientQueryComponent preloadedQuery={preloadedQuery} />
       </div>
     </div>
