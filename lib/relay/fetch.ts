@@ -21,7 +21,11 @@ const BASE_URL = IS_DEV
   ? 'http://localhost:3000'
   : process.env.NEXT_PUBLIC_GRAPHQL_URL;
 
-!IS_DEV && invariant(process.env.NEXT_PUBLIC_GRAPHQL_URL);
+!IS_DEV &&
+  invariant(
+    process.env.NEXT_PUBLIC_GRAPHQL_URL,
+    'Can not found NEXT_PUBLIC_GRAPHQL_URL',
+  );
 
 const GRAPHQL_URL = `${BASE_URL}/api/graphql`;
 const IS_SERVER = typeof window === typeof undefined;
