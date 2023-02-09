@@ -17,13 +17,17 @@ type RequestProps = {
 };
 
 const IS_DEV = process.env.NODE_ENV === 'development';
+/* 
+  If deploy on vercel. you can get a current pathname with environment env 
+  https://vercel.com/docs/concepts/projects/environment-variables
+*/
 const BASE_URL = IS_DEV
   ? 'http://localhost:3000'
-  : process.env.NEXT_PUBLIC_GRAPHQL_URL;
+  : `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 
 !IS_DEV &&
   invariant(
-    process.env.NEXT_PUBLIC_GRAPHQL_URL,
+    process.env.NEXT_PUBLIC_VERCEL_URL,
     'Can not found NEXT_PUBLIC_GRAPHQL_URL',
   );
 
