@@ -8,6 +8,7 @@ import type {ReactElement} from 'react';
 import type {SerializablePreloadedQuery} from '~/lib/relay/loadSerializableQuery';
 import {getCurrentEnvironment} from '~/lib/relay';
 import {postsQuery} from '~/lib/relay/queries/Post';
+import {useLocaleContext} from './LocaleProvider';
 import {usePreloadedQuery} from 'react-relay';
 import useSerializablePreloadedQuery from '~/lib/relay/useSerializableQuery';
 
@@ -17,13 +18,14 @@ type Props = {
 
 function Component({queryRef}: Props): ReactElement {
   const data = usePreloadedQuery(postsQuery, queryRef);
+  const {locale} = useLocaleContext();
 
   return (
     <div className="flex flex-col">
       {data.posts ? (
         data.posts.map((elm) => (
           <Link
-            href={`/posts/${elm?.id}`}
+            href={`${locale}/posts/${elm?.id}`}
             key={elm?.id}
             className="mb-4 hover:underline cursor-pointer"
           >

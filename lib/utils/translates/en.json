@@ -1,0 +1,13 @@
+{
+  "common": {
+    "go_back": "Go back"
+  },
+  "index": {
+    "title": "Prisma nextjs graphql boilerplate",
+    "post_list": "Post list"
+  },
+  "post": {
+    "title": "Title",
+    "content": "Content"
+  }
+}

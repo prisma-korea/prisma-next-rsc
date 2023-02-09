@@ -736,12 +736,16 @@ input[type='search']::-webkit-search-decoration,
   fill: #FFFFFF;
 }
 
-.mb-4 {
-  margin-bottom: 1rem;
+.static {
+  position: static;
 }
 
 .mb-8 {
   margin-bottom: 2rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
 .mt-8 {
@@ -792,10 +796,6 @@ input[type='search']::-webkit-search-decoration,
   border-style: solid;
 }
 
-.p-1 {
-  padding: 0.25rem;
-}
-
 .p-2 {
   padding: 0.5rem;
 }
@@ -804,12 +804,12 @@ input[type='search']::-webkit-search-decoration,
   font-size: 26px;
 }
 
-.text-h3 {
-  font-size: 18px;
-}
-
 .text-h2 {
   font-size: 22px;
+}
+
+.text-h3 {
+  font-size: 18px;
 }
 
 .text-h4 {

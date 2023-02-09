@@ -1,0 +1,13 @@
+{
+  "common": {
+    "go_back": "돌아가기"
+  },
+  "index": {
+    "title": "Prisma nextjs graphql 보일러플레이트",
+    "post_list": "Post 리스트"
+  },
+  "post": {
+    "title": "타이틀",
+    "content": "내용"
+  }
+}
