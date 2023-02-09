@@ -8,13 +8,22 @@ import type {
 } from 'relay-runtime';
 import {Network, QueryResponseCache} from 'relay-runtime';
 
+import invariant from 'tiny-invariant';
+
 type RequestProps = {
   method: string;
   headers: Record<string, string>;
   body: string | FormData | null;
 };
 
-const GRAPHQL_URL = 'http://localhost:3000/api/graphql';
+const IS_DEV = process.env.NODE_ENV === 'development';
+const BASE_URL = IS_DEV
+  ? 'http://localhost:3000'
+  : process.env.NEXT_PUBLIC_GRAPHQL_URL;
+
+!IS_DEV && invariant(process.env.NEXT_PUBLIC_GRAPHQL_URL);
+
+const GRAPHQL_URL = `${BASE_URL}/api/graphql`;
 const IS_SERVER = typeof window === typeof undefined;
 const CACHE_TTL = 5 * 1000; // 5 seconds, to resolve preloaded results
 

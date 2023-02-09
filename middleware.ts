@@ -14,7 +14,9 @@ function getLocale(request: NextRequest): string | undefined {
   // @ts-ignore locales are readonly
   const locales: string[] = i18n.locales;
 
-  return matchLocale(languages, locales, i18n.defaultLocale);
+  return matchLocale(languages, locales, i18n.defaultLocale, {
+    algorithm: 'best fit',
+  });
 }
 
 export function middleware(request: NextRequest): NextResponse | undefined {
