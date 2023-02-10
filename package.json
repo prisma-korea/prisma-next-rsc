@@ -8,10 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "seed": "dotenv -e .env.local -- prisma db seed",
-    "migrate:dev": "dotenv -e .env.local -- prisma migrate dev --schema=./server/prisma/schema.prisma",
-    "migrate:deploy": "dotenv -e .env.local -- prisma migrate deploy --schema=./server/prisma/schema.prisma",
+    "migrate:dev": "dotenv -e .env.local -- prisma migrate dev",
+    "migrate:deploy": "dotenv -e .env.local -- prisma migrate deploy",
     "generate:nexus": "ts-node --transpile-only ./server/schema",
-    "generate:prisma": "prisma generate --schema=./server/prisma/schema.prisma",
+    "generate:prisma": "prisma generate",
     "generate:server": "yarn generate:nexus && yarn generate:prisma"
   },
   "dependencies": {
