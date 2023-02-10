@@ -23,5 +23,3 @@ export default async function PostPage({
     <PostClientComponent preloadedQuery={preloadedQuery} t={{post, common}} />
   );
 }
-
-export const revalidate = 0;

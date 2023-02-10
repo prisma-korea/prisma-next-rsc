@@ -15,5 +15,10 @@ export type Translation = {
   [K in keyof Translates]: Translates[K];
 };
 
-export const getTranslates = async (locale: Locale): Promise<Translates> =>
-  translates[locale]();
+export const getTranslates = async (locale: Locale): Promise<Translates> => {
+  if (typeof translates[locale] === 'function') {
+    return translates['en']();
+  }
+
+  return translates[locale]();
+};
