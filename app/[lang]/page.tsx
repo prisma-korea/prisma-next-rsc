@@ -45,3 +45,4 @@ export default async function Page({
   );
 }
 /* https://beta.nextjs.org/docs/api-reference/segment-config#revalidate */
+export const revalidate = 0;
