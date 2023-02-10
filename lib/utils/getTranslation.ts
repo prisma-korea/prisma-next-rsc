@@ -16,7 +16,7 @@ export type Translation = {
 };
 
 export const getTranslates = async (locale: Locale): Promise<Translates> => {
-  if (typeof translates[locale] === 'function') {
+  if (typeof translates[locale] !== 'function') {
     return translates['en']();
   }
 
