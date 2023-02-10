@@ -1,11 +1,4 @@
-import type {NextApiRequest, NextApiResponse} from 'next';
-
 import {PrismaClient} from '@prisma/client';
-
-export interface Context {
-  prisma: PrismaClient;
-  request: {req: NextApiRequest; res: NextApiResponse};
-}
 
 const createPrismaClient = (): PrismaClient => {
   const prisma = new PrismaClient();
@@ -60,14 +53,20 @@ const createPrismaClient = (): PrismaClient => {
   return prisma;
 };
 
-type CreateContextParams = {
-  req: NextApiRequest;
-  res: NextApiResponse;
-};
+let prismaClient: PrismaClient;
 
-export function createContext(params: CreateContextParams): Context {
-  return {
-    prisma: createPrismaClient(),
-    request: params,
-  };
+declare global {
+  var prisma: PrismaClient;
 }
+
+if (process.env.NODE_ENV === 'production') {
+  prismaClient = createPrismaClient();
+} else {
+  if (!global.prisma) {
+    global.prisma = createPrismaClient();
+  }
+
+  prismaClient = global.prisma;
+}
+
+export {prismaClient};

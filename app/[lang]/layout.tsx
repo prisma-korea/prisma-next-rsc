@@ -10,13 +10,6 @@ type Props = {
   params: {lang: Locale};
 };
 
-/* this is for static generation */
-// export async function generateStaticParams(): Promise<
-//   Array<{lang: TupleToUnion<(typeof i18n)['locales']>}>
-// > {
-//   return i18n.locales.map((locale) => ({lang: locale}));
-// }
-
 export default function RootLayout({
   children,
   params: {lang},

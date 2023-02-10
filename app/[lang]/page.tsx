@@ -1,17 +1,22 @@
 import {H1, H4} from '~/components/Typography';
 
 import {Inter} from '@next/font/google';
+import Link from 'next/link';
 import type {Locale} from '~/lib/i18n';
 import LocaleSwitcher from '~/components/LocaleSwitcher';
-import type {PostsQuery} from '~/lib/__generated__/PostsQuery.graphql';
-import PostsQueryNode from '~/lib/__generated__/PostsQuery.graphql';
+import type {Post} from '@prisma/client';
 import type {ReactElement} from 'react';
-import TempClientQueryComponent from '~/components/TempClientComponent';
 import clsx from 'clsx';
 import {getTranslates} from '~/lib/utils/getTranslation';
-import loadSerializableQuery from '~/lib/relay/loadSerializableQuery';
+import {prismaClient} from '~/lib/prisma';
 
 const inter = Inter({subsets: ['latin']});
+
+async function getPosts(): Promise<Post[]> {
+  const data = await prismaClient.post.findMany();
+
+  return data ?? [];
+}
 
 type Props = {
   params: {lang: Locale};
@@ -20,11 +25,7 @@ type Props = {
 export default async function Page({
   params: {lang},
 }: Props): Promise<ReactElement> {
-  const {index} = await getTranslates(lang);
-  const preloadedQuery = await loadSerializableQuery<
-    typeof PostsQueryNode,
-    PostsQuery
-  >(PostsQueryNode.params, {});
+  const [{index}, data] = await Promise.all([getTranslates(lang), getPosts()]);
 
   return (
     <div className="h-full flex flex-col justify-center items-center">
@@ -39,10 +40,22 @@ export default async function Page({
         <H4 className={clsx('text-h2', 'mb-4', inter.className)}>
           {index.post_list}
         </H4>
-        <TempClientQueryComponent preloadedQuery={preloadedQuery} />
+        <div className="flex flex-col">
+          {data.length !== 0 ? (
+            data.map((elm) => (
+              <Link
+                href={`${lang}/posts/${elm.id}`}
+                key={elm.id}
+                className="mb-4 hover:underline cursor-pointer"
+              >
+                {elm.title}
+              </Link>
+            ))
+          ) : (
+            <p>Try to seed mock data with yarn seed</p>
+          )}
+        </div>
       </div>
     </div>
   );
 }
-/* https://beta.nextjs.org/docs/api-reference/segment-config#revalidate */
-export const revalidate = 0;
