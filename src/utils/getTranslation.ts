@@ -7,6 +7,7 @@ import type {Locale} from '../i18n';
 const translates = {
   en: () => import('./translates/en.json').then((module) => module.default),
   ko: () => import('./translates/ko.json').then((module) => module.default),
+  /* add more locales here */
 };
 
 type Translates = Awaited<ReturnType<(typeof translates)['en']>>;
