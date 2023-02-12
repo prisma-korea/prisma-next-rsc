@@ -31,7 +31,10 @@ export default async function PostPage({
           {post.content}: {data?.content}
         </p>
       </div>
-      <Link href="../" className="mt-8 border-[1px] border-solid p-2 rounded">
+      <Link
+        href={`/${lang}`}
+        className="mt-8 border-[1px] border-solid p-2 rounded"
+      >
         {common.go_back}
       </Link>
     </div>
