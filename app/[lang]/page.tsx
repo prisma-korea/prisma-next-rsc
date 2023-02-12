@@ -2,13 +2,13 @@ import {H1, H4} from '~/components/Typography';
 
 import {Inter} from '@next/font/google';
 import Link from 'next/link';
-import type {Locale} from '~/lib/i18n';
+import type {Locale} from '~/i18n';
 import LocaleSwitcher from '~/components/LocaleSwitcher';
 import type {Post} from '@prisma/client';
 import type {ReactElement} from 'react';
 import clsx from 'clsx';
-import {getTranslates} from '~/lib/utils/getTranslation';
-import {prismaClient} from '~/lib/prisma';
+import {getTranslates} from '~/utils/getTranslation';
+import {prismaClient} from '~/prisma';
 
 const inter = Inter({subsets: ['latin']});
 

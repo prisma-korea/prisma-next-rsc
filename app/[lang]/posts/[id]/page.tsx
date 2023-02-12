@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import type {Locale} from '~/lib/i18n';
+import type {Locale} from '~/i18n';
 import type {Post} from '@prisma/client';
 import type {ReactElement} from 'react';
-import {getTranslates} from '~/lib/utils/getTranslation';
-import {prismaClient} from '~/lib/prisma';
+import {getTranslates} from '~/utils/getTranslation';
+import {prismaClient} from '~/prisma';
 
 async function getPost(id: string): Promise<Post | null> {
   return await prismaClient.post.findUnique({where: {id}});
@@ -31,7 +31,10 @@ export default async function PostPage({
           {post.content}: {data?.content}
         </p>
       </div>
-      <Link href="../" className="mt-8 border-[1px] border-solid p-2 rounded">
+      <Link
+        href={`/${lang}`}
+        className="mt-8 border-[1px] border-solid p-2 rounded"
+      >
         {common.go_back}
       </Link>
     </div>

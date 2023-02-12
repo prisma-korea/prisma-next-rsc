@@ -5,8 +5,8 @@ import 'client-only';
 import type {ChangeEventHandler, ReactElement} from 'react';
 import {usePathname, useRouter} from 'next/navigation';
 
-import type {TupleToUnion} from '~/lib/types/utils';
-import {i18n} from '~/lib/i18n';
+import type {TupleToUnion} from '~/types/utils';
+import {i18n} from '~/i18n';
 import {useLocaleContext} from './LocaleProvider';
 
 export default function LocaleSwitcher(): ReactElement {

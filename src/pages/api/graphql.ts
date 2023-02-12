@@ -1,8 +1,8 @@
 import type {NextApiHandler, NextApiRequest, NextApiResponse} from 'next';
 
 import {HeaderMap} from '@apollo/server';
-import {apolloServer} from '~/server';
-import {createContext} from '~/server/context';
+import {apolloServer} from '../../../server';
+import {createContext} from '../../../server/context';
 import {parse} from 'url';
 
 const handler: NextApiHandler = async (
