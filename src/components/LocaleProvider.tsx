@@ -2,8 +2,8 @@
 
 import 'client-only';
 
-import type {Locale} from '~/lib/i18n';
-import createCtx from '~/lib/utils/createCtx';
+import type {Locale} from '~/i18n';
+import createCtx from '~/utils/createCtx';
 import {useState} from 'react';
 
 interface Context {

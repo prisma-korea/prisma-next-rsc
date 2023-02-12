@@ -1,6 +1,6 @@
 'use client';
 
-import type {Locale} from '~/lib/i18n';
+import type {Locale} from '~/i18n';
 import {LocaleProvider} from '~/components/LocaleProvider';
 
 export default function Providers({

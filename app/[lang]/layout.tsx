@@ -2,7 +2,7 @@ import '../../styles/output.css';
 
 import type {ReactElement, ReactNode} from 'react';
 
-import type {Locale} from '~/lib/i18n';
+import type {Locale} from '~/i18n';
 import Providers from './Providers';
 
 type Props = {
