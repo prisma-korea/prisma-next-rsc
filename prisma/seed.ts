@@ -25,7 +25,6 @@ async function main(): Promise<void> {
     data: {
       email: `test@gmail.com`,
       name: 'tester',
-      gender: 'male',
       posts: {
         create: mockPosts,
       },
@@ -34,7 +33,8 @@ async function main(): Promise<void> {
 }
 
 main()
-  .catch((e) => {
+  .catch((e): void => {
+    // eslint-disable-next-line no-console
     console.error(e);
     process.exit(1);
   })
