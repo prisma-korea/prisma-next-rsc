@@ -6,21 +6,17 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-enum Gender {
-  male
-  female
-}
+
 
 model User {
   id       String  @id @default(cuid())
   email    String? @unique
   name     String?
   imageUrl String?
-  gender   Gender?
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now()) @updatedAt

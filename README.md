@@ -24,7 +24,7 @@
 
 2. Setup database url for prisma
 
-- Default database is postgresql. You can change this in `/prisma/schema.prisma`. Check supported database [here](https://www.prisma.io/docs/reference/database-reference/supported-databases)
+- Default database is `sqlite`. You can change this in `/prisma/schema.prisma`. Check supported database [here](https://www.prisma.io/docs/reference/database-reference/supported-databases)
 
 3. Modify schema codes in `/prisma/schema.prisma` file as your needs.
 
@@ -64,16 +64,16 @@ The `styles/output.css` file is a result. A tailwindcss will create only css cla
 
 nextjs has supported localization as a default like below. But not in experiment stage. So this project is just follow the [example](https://github.com/vercel/next.js/tree/canary/examples/app-dir-i18n-routing).
 
-    ```ts
-    const nextConfig = {
-    swcMinify: true,
-    reactStrictMode: true,
-    i18n: {
-        defaultLocale: 'en',
-        locales: ['en', 'fr'],
-    },
-    };
-    ```
+```ts
+const nextConfig = {
+  swcMinify: true,
+  reactStrictMode: true,
+  i18n: {
+      defaultLocale: 'en',
+      locales: ['en', 'fr'],
+  },
+};
+```
 
 Translation files are in `/src/utils/translates/*.json`. Add more texts in `*.json` file, then use it with `getTranslation` function.
 
