@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "concurrently \"next dev\" \"tailwindcss --input ./styles/root.css --output ./styles/output.css --watch\"",
     "build": "tailwindcss ./styles/root.css --output ./styles/output.css && yarn generate:prisma && next build",
+    "export": "next export",
     "start": "next start",
     "lint": "next lint",
     "seed": "dotenv -e .env.local -- prisma db seed",
