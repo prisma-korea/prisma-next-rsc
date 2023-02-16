@@ -3,7 +3,7 @@ const onGithubActions = process.env.GITHUB_ACTIONS || false;
 let assetPrefix = '';
 let basePath = '/';
 
-if (isGithubActions) {
+if (onGithubActions) {
   // trim off `<owner>/`
   const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '');
 

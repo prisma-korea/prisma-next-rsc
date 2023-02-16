@@ -2,6 +2,7 @@
   "name": "prisma-nextjs-graphql",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://prisma-korea.github.io/prisma-next-rsc",
   "scripts": {
     "dev": "concurrently \"next dev\" \"tailwindcss --input ./styles/root.css --output ./styles/output.css --watch\"",
     "build": "tailwindcss ./styles/root.css --output ./styles/output.css && yarn generate:prisma && next build",

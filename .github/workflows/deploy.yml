@@ -6,7 +6,6 @@ on:
 
 jobs:
   build:
-		
     runs-on: ubuntu-latest
 
     steps:
@@ -16,18 +15,25 @@ jobs:
         with:
           # update the Node version to meet your needs
           node-version: 18
-          cache: npm
+          cache: yarn
+
+      - name: Install modules
+        run: yarn install --frozen-lockfile
+
+      - name: Check lint
+        run: yarn lint
 
       - name: Build
         run: |
-          yarn install --frozen-lockfile
           yarn build
           yarn export
           touch out/.nojekyll
+        env:
+          DATABASE_URL: file:./dev.db
 
       - name: Deploy
         # https://github.com/JamesIves/github-pages-deploy-action
-        uses: JamesIves/github-pages-deploy-action@4.4.0
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: out
