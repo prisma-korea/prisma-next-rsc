@@ -14,7 +14,7 @@
     "migrate:deploy": "dotenv -e .env.local -- prisma migrate deploy",
     "generate:nexus": "ts-node --transpile-only ./server/schema",
     "generate:prisma": "prisma generate",
-    "generate:server": "yarn generate:nexus && yarn generate:prisma"
+    "generate": "yarn generate:nexus && yarn generate:prisma"
   },
   "dependencies": {
     "@apollo/server": "^4.3.3",

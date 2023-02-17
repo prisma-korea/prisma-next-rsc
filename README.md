@@ -104,6 +104,6 @@ export default async function Page({lang}) {
 
 ### API Routes
 
-Next 13 beta still places api routes in `pages/api` folder. And this project has sample graphql server end point. You can test that route with `http://localhost:3000/api/graphql`. Make sure that execute `yarn generate:server` script before test.
+Next 13 beta still places api routes in `pages/api` folder. And this project has sample graphql server end point. You can test that route with `http://localhost:3000/api/graphql`. Make sure that execute `yarn generate` script before test.
 
 server codes are in `/server` folder.
