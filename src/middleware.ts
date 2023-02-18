@@ -4,6 +4,9 @@ import {NextResponse} from 'next/server';
 import {i18n} from '~/i18n';
 import {match as matchLocale} from '@formatjs/intl-localematcher';
 
+const onGithubActions = process.env.GITHUB_ACTIONS || false;
+const repoName = (process.env.GITHUB_REPOSITORY || '').replace(/.*?\//, '');
+
 function getLocale(request: NextRequest): string | undefined {
   // Negotiator expects plain object so we need to transform headers
   const negotiatorHeaders: Record<string, string> = {};
@@ -20,7 +23,11 @@ function getLocale(request: NextRequest): string | undefined {
 }
 
 export function middleware(request: NextRequest): NextResponse | undefined {
-  const pathname = request.nextUrl.pathname;
+  let pathname = request.nextUrl.pathname;
+
+  if (onGithubActions) {
+    pathname = pathname.replace(`/${repoName}`, '');
+  }
 
   // // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
   // // If you have one
@@ -34,14 +41,21 @@ export function middleware(request: NextRequest): NextResponse | undefined {
   //   return
 
   // Check if there is any supported locale in the pathname
-  const pathnameIsMissingLocale = i18n.locales.every(
-    (locale) =>
-      !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
-  );
+  const pathnameIsMissingLocale = i18n.locales.every((locale) => {
+    return !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`;
+  });
 
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
+
+    const origin = new URL(request.url).origin;
+
+    if (onGithubActions) {
+      return NextResponse.redirect(
+        `${origin}/${repoName}/${locale}/${pathname}`,
+      );
+    }
 
     // e.g. incoming request is /products
     // The new URL is now /en-US/products
