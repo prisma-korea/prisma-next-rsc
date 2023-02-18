@@ -26,3 +26,5 @@ jobs:
 
       - name: Build
         run: yarn build
+        env:
+          DATABASE_URL: file:./dev.db
