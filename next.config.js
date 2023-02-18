@@ -1,18 +1,15 @@
-const onGithubActions = process.env.GITHUB_ACTIONS || false;
+const isProd = process.env.NODE_ENV === 'production';
 
-let assetPrefix = '';
 let basePath = '';
-if (onGithubActions) {
+if (isProd) {
   // const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '');
   const repo = 'prisma-next-rsc';
 
-  assetPrefix = `/${repo}/`;
   basePath = `/${repo}`;
 }
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  assetPrefix,
   basePath,
   swcMinify: true,
   reactStrictMode: true,
