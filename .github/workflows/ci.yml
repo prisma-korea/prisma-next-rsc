@@ -1,8 +1,10 @@
-name: Build & Deploy
+name: CI
 
 on:
   push:
     branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   build:
@@ -23,16 +25,4 @@ jobs:
         run: yarn lint
 
       - name: Build
-        run: |
-          yarn build
-          yarn export
-          touch out/.nojekyll
-        env:
-          DATABASE_URL: file:./dev.db
-
-      - name: Deploy
-        # https://github.com/JamesIves/github-pages-deploy-action
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: out
+        run: yarn build

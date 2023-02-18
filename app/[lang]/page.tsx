@@ -1,8 +1,9 @@
 import {H1, H4} from '~/components/Typography';
+import type {Locale} from '~/i18n';
+import {i18n} from '~/i18n';
 
 import {Inter} from '@next/font/google';
 import Link from 'next/link';
-import type {Locale} from '~/i18n';
 import LocaleSwitcher from '~/components/LocaleSwitcher';
 import type {Post} from '@prisma/client';
 import type {ReactElement} from 'react';
@@ -16,6 +17,10 @@ async function getPosts(): Promise<Post[]> {
   const data = await prismaClient.post.findMany();
 
   return data ?? [];
+}
+
+export async function generateStaticParams(): Promise<any> {
+  return i18n.locales.map((lang) => ({lang}));
 }
 
 type Props = {

@@ -5,6 +5,14 @@ import type {ReactElement} from 'react';
 import {getTranslates} from '~/utils/getTranslation';
 import {prismaClient} from '~/prisma';
 
+export async function generateStaticParams(): Promise<any> {
+  const posts = await prismaClient.post.findMany();
+
+  return posts.map((post) => ({
+    id: post.id,
+  }));
+}
+
 async function getPost(id: string): Promise<Post | null> {
   return await prismaClient.post.findUnique({where: {id}});
 }
