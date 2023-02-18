@@ -15,10 +15,9 @@ jobs:
         with:
           # update the Node version to meet your needs
           node-version: 18
-          cache: yarn
 
       - name: Install modules
-        run: yarn install --frozen-lockfile
+        run: yarn
 
       - name: Check lint
         run: yarn lint

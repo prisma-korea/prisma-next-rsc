@@ -5,7 +5,7 @@ import {i18n} from '~/i18n';
 import {match as matchLocale} from '@formatjs/intl-localematcher';
 
 const onGithubActions = process.env.GITHUB_ACTIONS || false;
-const repoName = (process.env.GITHUB_REPOSITORY || '').replace(/.*?\//, '');
+const repoName = 'prisma-next-rsc';
 
 function getLocale(request: NextRequest): string | undefined {
   // Negotiator expects plain object so we need to transform headers
