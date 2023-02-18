@@ -1,10 +1,10 @@
 {
   "common": {
-    "go_back": "Go back"
+    "goBack": "Go back"
   },
   "index": {
-    "title": "Prisma nextjs graphql boilerplate",
-    "post_list": "Post list"
+    "title": "Prisma Next RSC boilerplate",
+    "postList": "Post list"
   },
   "post": {
     "title": "Title",

@@ -35,7 +35,7 @@ export default async function PostPage({
         href={`/${lang}`}
         className="mt-8 border-[1px] border-solid p-2 rounded"
       >
-        {common.go_back}
+        {common.goBack}
       </Link>
     </div>
   );

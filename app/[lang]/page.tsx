@@ -38,7 +38,7 @@ export default async function Page({
       </div>
       <div>
         <H4 className={clsx('text-h2', 'mb-4', inter.className)}>
-          {index.post_list}
+          {index.postList}
         </H4>
         <div className="flex flex-col">
           {data.length !== 0 ? (
