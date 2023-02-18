@@ -4,7 +4,7 @@ import {NextResponse} from 'next/server';
 import {i18n} from '~/i18n';
 import {match as matchLocale} from '@formatjs/intl-localematcher';
 
-const onGithubActions = process.env.GITHUB_ACTIONS || false;
+const isProd = process.env.NODE_ENV === 'production';
 const repoName = 'prisma-next-rsc';
 
 function getLocale(request: NextRequest): string | undefined {
@@ -25,7 +25,7 @@ function getLocale(request: NextRequest): string | undefined {
 export function middleware(request: NextRequest): NextResponse | undefined {
   let pathname = request.nextUrl.pathname;
 
-  if (onGithubActions) {
+  if (isProd) {
     pathname = pathname.replace(`/${repoName}`, '');
   }
 
@@ -51,7 +51,7 @@ export function middleware(request: NextRequest): NextResponse | undefined {
 
     const origin = new URL(request.url).origin;
 
-    if (onGithubActions) {
+    if (isProd) {
       return NextResponse.redirect(
         `${origin}/${repoName}/${locale}/${pathname}`,
       );
