@@ -38,3 +38,6 @@ next-env.d.ts
 ## nextjs env
 .env.local
 .env
+
+# yarn berry
+.yarn/*

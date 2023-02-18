@@ -17,11 +17,11 @@
     "generate": "yarn generate:nexus && yarn generate:prisma"
   },
   "dependencies": {
-    "@apollo/server": "^4.3.3",
+    "@apollo/server": "^4.4.0",
     "@formatjs/intl-localematcher": "^0.2.32",
     "@next/font": "v13.1.7-canary.6",
     "@prisma/client": "4.10.1",
-    "@types/node": "18.13.0",
+    "@types/node": "18.14.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "client-only": "^0.0.1",
@@ -56,10 +56,11 @@
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
     "tailwind-merge": "^1.9.1",
-    "tailwindcss": "^3.2.6",
+    "tailwindcss": "^3.2.7",
     "ts-node": "^10.9.1"
   },
   "prisma": {
     "seed": "ts-node --transpile-only ./prisma/seed.ts"
-  }
+  },
+  "packageManager": "yarn@3.4.1"
 }
