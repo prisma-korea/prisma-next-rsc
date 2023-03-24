@@ -1,3 +1,7 @@
+# Deprecated
+
+Deprecate in favor of [prisma-korea/prisma-nextjs-rsc](https://github.com/prisma-korea/prisma-nextjs-rsc).
+
 ### Next with prisma boilerplate
 
 ### ⚠️ This project is built on next v13 experimental-version.
